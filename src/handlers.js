@@ -1,6 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
+/* Function to handle requests for the homePage and send back appropriate response */
+
 const homePage = (response) => {
   const filePath = path.join(__dirname, '..', 'public', 'index.html');
   fs.readFile(filePath, (error, file) => {
@@ -14,6 +16,9 @@ const homePage = (response) => {
     response.end();
   });
 };
+
+/* Function to handle requests for the assets e.g. css, images, javascript pages
+and send back the appropriate response */
 
 const assetsHandler = (url, response) => {
   const extension = url.split('.')[1];
@@ -37,6 +42,9 @@ const assetsHandler = (url, response) => {
     }
   });
 };
+
+/* Function to handle 404 Pages (Pages not found) and return the appropriate
+response code and content */
 
 const notFound = (response) => {
   response.writeHead(404, { 'Content-Type': 'text/html' });

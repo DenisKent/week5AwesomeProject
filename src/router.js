@@ -9,7 +9,7 @@ const router = (request, response) => {
   if (url === '/') {
     handlers.homePage(response);
   } else if (url.includes('/get-data')) {
-    handlers.searchHandler(url, response);
+    handlers.searchHandler(request, response);
   } else if (assetURLs.includes(url)) {
     handlers.assetsHandler(url, response);
   } else {

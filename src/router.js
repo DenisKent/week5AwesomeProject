@@ -1,6 +1,6 @@
 const handlers = require('./handler.js');
 
-function router(request, response) {
+const router = (request, response) => {
   const url = request.url;
   if (url === '/') {
     handlers.index(response);
@@ -11,6 +11,6 @@ function router(request, response) {
   } else {
     handlers.notFound();
   }
-}
+};
 
 module.exports = router;

@@ -15,4 +15,9 @@ const homePage = (response) => {
   });
 };
 
+const notFound = (response) => {
+  response.writeHead(404, { 'Content-Type': 'text/html' });
+  response.end('404 Page Not Found');
+};
+
 module.exports = { homePage };

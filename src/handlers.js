@@ -65,5 +65,8 @@ const notFound = (response) => {
 };
 
 module.exports = {
-  homePage, notFound, assetsHandler, searchHandler,
+  homePage,
+  notFound,
+  assetsHandler,
+  searchHandler,
 };

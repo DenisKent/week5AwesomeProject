@@ -42,7 +42,10 @@ const assetsHandler = (url, response) => {
   });
 };
 
-const searchHandler = (request, response) => {};
+const searchHandler = (request, response) => {
+  response.writeHead(200, { 'Content-Type': 'application/json' });
+  response.end('Hello');
+};
 
 /* Function to handle 404 Pages (Pages not found) and return the appropriate
 response code and content */
@@ -52,4 +55,6 @@ const notFound = (response) => {
   response.end('<h1>Sorry, Page Not Found</h1>');
 };
 
-module.exports = { homePage, notFound, assetsHandler };
+module.exports = {
+  homePage, notFound, assetsHandler, searchHandler,
+};

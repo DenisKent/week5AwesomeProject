@@ -8,7 +8,7 @@ const router = (request, response) => {
   const url = request.url;
   if (url === '/') {
     handlers.homePage(response);
-  } else if (url.includes('/getData')) {
+  } else if (url.includes('/get-data')) {
     handlers.searchHandler(url, response);
   } else if (assetURLs.includes(url)) {
     handlers.assetsHandler(url, response);

@@ -1,2 +1,3 @@
 # week5AwesomeProject
-Here is our link google.com
+
+We are using the following API: https://docs.openaq.org/

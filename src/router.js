@@ -5,11 +5,11 @@ const router = (request, response) => {
   if (url === '/') {
     handlers.homePage(response);
   } else if (url.indexOf('/getData?q=') === 0) {
-    handlers.search(url, response);
-  } else if (url.indexOf('/') === 0) {
-    handlers.assets(url, response);
+    handlers.searchHandler(url, response);
+  } else if (url.includes('style.css')) {
+    handlers.assetsHandler(url, response);
   } else {
-    handlers.notFound();
+    handlers.notFound(response);
   }
 };
 

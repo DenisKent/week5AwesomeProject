@@ -2,9 +2,12 @@
   "name": "week5_awesome_project",
   "version": "1.0.0",
   "description": "Here is our link google.com",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "nyc tape tests/test.js | tap-spec",
+    "dev": "nodemon src/server.js",
+    "coverage": "nyc --reporter=lcov npm run test",
+    "start": "npm run src/server.js"
   },
   "repository": {
     "type": "git",
@@ -26,6 +29,7 @@
     "eslint-plugin-react": "^7.10.0",
     "nodemon": "^1.18.3",
     "nyc": "^12.0.2",
+    "supertest": "^3.1.0",
     "tap-spec": "^5.0.0",
     "tape": "^4.9.1"
   }

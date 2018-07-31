@@ -1,9 +1,9 @@
-const handlers = require('./handler.js');
+const handlers = require('./handlers');
 
 const router = (request, response) => {
   const url = request.url;
   if (url === '/') {
-    handlers.index(response);
+    handlers.homePage(response);
   } else if (url.indexOf('/getData?q=') === 0) {
     handlers.search(url, response);
   } else if (url.indexOf('/') === 0) {

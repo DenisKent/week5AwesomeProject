@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const index = (response) => {
+const homePage = (response) => {
   const filePath = path.join(__dirname, '..', 'public', 'index.html');
   fs.readFile(filePath, (error, file) => {
     if (error) {
@@ -15,4 +15,4 @@ const index = (response) => {
   });
 };
 
-module.exports = handlers;
+module.exports = { homePage };

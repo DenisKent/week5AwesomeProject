@@ -43,8 +43,17 @@ const assetsHandler = (url, response) => {
 };
 
 const searchHandler = (request, response) => {
-  response.writeHead(200, { 'Content-Type': 'application/json' });
-  response.end('Hello');
+  let allData = '';
+
+  request.on('data', (data) => {
+    allData += data;
+  });
+
+  request.on('end', () => {
+    console.log(allData);
+    response.writeHead(200, { 'Content-Type': 'application/json' });
+    response.end(`This is from the server!${allData}`);
+  });
 };
 
 /* Function to handle 404 Pages (Pages not found) and return the appropriate

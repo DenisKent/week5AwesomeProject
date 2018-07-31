@@ -11,9 +11,8 @@ const homePage = (response) => {
       response.end('<h1>Sorry, something went wrong</h1>');
     } else {
       response.writeHead(200, { 'Content-type': 'text/html' });
-      response.write(file);
+      response.end(file);
     }
-    response.end();
   });
 };
 
@@ -42,6 +41,8 @@ const assetsHandler = (url, response) => {
     }
   });
 };
+
+const searchHandler = (request, response) => {};
 
 /* Function to handle 404 Pages (Pages not found) and return the appropriate
 response code and content */

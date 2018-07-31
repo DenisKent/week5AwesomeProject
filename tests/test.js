@@ -9,7 +9,7 @@ test('Home route returns a 200 Ok', (t) => {
     .get('/')
     .expect(200)
     .expect('Content-Type', /html/)
-    .end((err, res) => {
+    .end((err) => {
       t.error(err);
       t.end();
     });
@@ -40,7 +40,7 @@ test('JavaScript files should return a 200', (t) => {
     .get('/dom.js')
     .expect(200)
     .expect('Content-Type', /javascript/)
-    .end((err, res) => {
+    .end((err) => {
       t.error(err);
       t.end();
     });
@@ -53,7 +53,7 @@ test('CSS files should return a 200', (t) => {
     .get('/style.css')
     .expect(200)
     .expect('Content-Type', /css/)
-    .end((err, res) => {
+    .end((err) => {
       t.error(err);
       t.end();
     });
@@ -66,7 +66,7 @@ test('Unfound file paths should return a 500 error', (t) => {
     .get('/supertest-500')
     .expect(500)
     .expect('Content-Type', /html/)
-    .end((err, res) => {
+    .end((err) => {
       t.error(err);
       t.end();
     });

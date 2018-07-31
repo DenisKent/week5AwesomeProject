@@ -27,7 +27,7 @@ test('A URL not found returns 404', (t) => {
       t.equal(
         res.text,
         '<h1>Sorry, Page Not Found</h1>',
-        "response should contain Sorry, Page Not Found'",
+        "response should contain 'Sorry, Page Not Found'",
       );
       t.end();
     });
@@ -53,6 +53,19 @@ test('CSS files should return a 200', (t) => {
     .get('/style.css')
     .expect(200)
     .expect('Content-Type', /css/)
+    .end((err, res) => {
+      t.error(err);
+      t.end();
+    });
+});
+
+/* Testing that 500 errors return a 500 status code */
+
+test('Unfound file paths should return a 500 error', (t) => {
+  supertest(router)
+    .get('/supertest-500')
+    .expect(500)
+    .expect('Content-Type', /html/)
     .end((err, res) => {
       t.error(err);
       t.end();

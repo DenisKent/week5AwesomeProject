@@ -1,8 +1,38 @@
-body{
+body {
   margin: 0px;
   text-align: center;
   font-family: 'Rubik', sans-serif;
 }
+
+#dropdown-box ul {
+  margin: auto;
+  padding: 0px;
+  width: 90%;
+  list-style-type: none;
+  opacity: 0.8;
+}
+#dropdown-box ul > li {
+  display: grid;
+  grid-template-columns: 7fr 3fr;
+  background-color: white;
+  align-items: center;
+}
+
+#dropdown-box li:hover {
+  background-color: grey;
+}
+
+.cityName {
+  text-align: left;
+  padding-left: 5%;
+}
+.countryName {
+  text-align: right;
+  padding-right: 3%;
+  color: rgb(77, 77, 77);
+  font-size: 12px;
+}
+
 h1 {
   margin: 0px;
   padding-top: 8%;
@@ -10,20 +40,21 @@ h1 {
   font-family: 'Concert One', cursive;
   font-size: 40px;
 }
-h3{
+h3 {
   font-size: 16px;
 }
-section{
+section {
   padding-top: 3%;
   padding-bottom: 3%;
 }
-ul, li{
+ul,
+li {
   list-style-type: none;
   padding: 0px;
   margin: 0px;
 }
 
-#cityInputBox{
+#cityInputBox {
   /* background-image: image(https://icon2.kisspng.com/20171221/odw/black-smoke-5a3c0ca177d2e2.1849037915138848334908.jpg); */
 }
 
@@ -34,17 +65,16 @@ ul, li{
 */
 #city-comparison {
   display: grid;
-  width:90%;
-  max-width:700px;
+  width: 90%;
+  max-width: 700px;
   margin: auto;
   grid-template-columns: 1fr 2fr 2fr;
 }
 
 #scientific-info {
-  width:80%;
+  width: 80%;
   margin: auto;
 }
-
 
 /*
 ============================
@@ -52,15 +82,15 @@ ul, li{
 ============================
 */
 /* The falling particles */
-#particle-container{
+#particle-container {
   margin: 0px;
   position: absolute;
   width: 100%;
   height: 100%;
   z-index: -1;
 }
-canvas{
-  display:block;
+canvas {
+  display: block;
   position: fixed;
   background: linear-gradient(to bottom, rgb(219, 227, 240), rgb(198, 226, 240));
 }
@@ -95,8 +125,31 @@ canvas{
     padding-bottom: 5%;
     font-size: 55px;
   }
-  h3{
+  h3 {
     font-size: 25px;
+  }
+  /* h1 {
+  font-size: 45px;
+} */
+  #cityInputBox {
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px #dddddd solid;
+    width: 40%;
+  }
+  #cityInputBox:focus {
+    width: 60%;
+  }
+  #dropdown-box ul {
+    margin: auto;
+    padding: 0px;
+    width: 60%;
+  }
+  #pxlrimage {
+    position: absolute;
+    /* left: 15%;
+  width: 70%; */
+    top: 140px;
   }
 }
 
@@ -107,8 +160,7 @@ canvas{
 */
 
 @media only screen and (min-width: 1001px) {
-
   #city-comparison {
-    width:70%;
+    width: 70%;
   }
 }

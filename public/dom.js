@@ -31,17 +31,21 @@ cityInput.addEventListener('keyup', function() {
 var populateDropdown = function(cityList) {
   removeChildren(citiesDropdown);
   cityList.forEach(function(city) {
-    /* Create an option element for each city. Each option elemnt has two spans in it with the city name and city country*/
-    var option = document.createElement('option');
-    var name = document.createElement('span');
-    var country = document.createElement('span');
-    name.value = city.name;
-    country.value = city['Alternate country code'];
-    option.appendChild(name);
-    option.appendChild(country);
-    citiesDropdown.appendChild(option);
+    var li = document.createElement('li');
+    var divCity = document.createElement('div');
+    var divCountry = document.createElement('div');
+    li.setAttribute('tabindex', '0');
+    li.classList.add('liList');
+    divCity.classList.add('cityName');
+    divCountry.classList.add('countryName');
+    divCity.textContent = city.name;
+    divCountry.textContent = city['Alternate country code'];
+    citiesDropdown.appendChild(li);
+    li.appendChild(divCity);
+    li.appendChild(divCountry);
     //When the drop down is clicked, make the data request and pass it to the handler
-    option.addEventListener('click', function() {
+    li.addEventListener('click', function() {
+      console.log(city.latitude);
       var coordinates = { lat: city.latitude, long: city.longitude };
       pollutionDataRequest(coordinates, updateCompareData);
     });

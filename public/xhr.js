@@ -1,7 +1,8 @@
 /* eslint-disable*/
 /* Function to get a request from the server based on the user's input */
 
-function pollutionDataRequest(coordinates) {
+function pollutionDataRequest(coordinates, cb) {
+  console.log(cb);
   /* Create new request */
   var xhr = new XMLHttpRequest();
   /* URL is get-pollution-data*/
@@ -11,7 +12,7 @@ function pollutionDataRequest(coordinates) {
   xhr.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       // Action to be performed when the document is ready:
-      updateData(JSON.parse(xhr.responseText));
+      cb(JSON.parse(xhr.responseText));
     }
   };
   /* Open POST request with URL  */
@@ -19,7 +20,6 @@ function pollutionDataRequest(coordinates) {
   /* Setting create request header for form input */
   xhr.setRequestHeader('Content-type', 'application/json');
   /* Send the user's input in the body of the request */
-  console.log(JSON.stringify(coordinates));
   xhr.send(JSON.stringify(coordinates));
 }
 

@@ -11,7 +11,7 @@ window.addEventListener('load', function(event) {
 function localPollutionDataRequest(position) {
   var coordinates = { lat: position.coords.latitude, long: position.coords.longitude };
   console.log(coordinates);
-  pollutionDataRequest(coordinates, console.log);
+  pollutionDataRequest(coordinates, updateLocalData);
 }
 
 /* Assigned the submitBtn from the DOM to the var */
@@ -43,14 +43,22 @@ var populateDropdown = function(cityList) {
     //When the drop down is clicked, make the data request and pass it to the handler
     option.addEventListener('click', function() {
       var coordinates = { lat: city.latitude, long: city.longitude };
-      pollutionDataRequest(coordinates);
+      pollutionDataRequest(coordinates, updateCompareData);
     });
   });
 };
 
-function updateData(data) {
-  console.log(data.measurements[0]);
-}
+var updateLocalData = function(data) {
+  for (i = 0; i < data.measurements.length; i++) {
+    if (data.measurements[i].parameter === 'pm10') {
+      document.getElementById('local_pm10').textContent = data.measurements[i].value;
+    } else if (data.measurements[i].parameter === 'no2') {
+      document.getElementById('local_no2').textContent = data.measurements[i].value;
+    } else if (data.measurements[i].parameter === 'o3') {
+      document.getElementById('local_o3').textContent = data.measurements[i].value;
+    }
+  }
+};
 
 function removeChildren(obj) {
   while (obj.hasChildNodes()) {

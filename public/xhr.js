@@ -15,13 +15,14 @@ function pollutionDataRequest(coordinates, cb) {
     }
     if (this.readyState == 4 && this.status == 204) {
       //Passes through an error if no data is returned
-      cb(new Error ("Sorry no air quality data could be found close to this city. Try another one."));
+      cb(
+        new Error('Sorry no air quality data could be found close to this city. Try another one.'),
+      );
     }
     if (this.readyState == 4 && this.status == 404) {
       //Passes through an error if no data is returned
-      cb(new Error ("City coordinate data is formatted incorrectly."));
+      cb(new Error('City coordinate data is formatted incorrectly.'));
     }
-
   };
   /* Open POST request with URL  */
   xhr.open('POST', url, true);

@@ -12,7 +12,7 @@ const cityHasData = (city, pollutants = ['pm10', 'no2', 'o3']) => {
   // The distance property is required to filter out far away results
   const hasDistance = Object.prototype.hasOwnProperty.call(city, 'distance');
   const test = tracker.reduce((acc, ele) => (ele ? acc + 1 : acc), 0);
-  return (test >= 2) && hasDistance;
+  return test >= 2 && hasDistance;
 };
 
 // The code below is used to get Air quality data using lat,long & radius .s
@@ -34,8 +34,10 @@ const pollutionDataRequest = (lat, long, cb, radius = 500000) => {
             chosenCity = city;
           }
         });
-        cb(chosenCity);
-      } else { cb('error no city was chosen'); }
+        cb(null, chosenCity);
+      } else {
+        cb(new Error(`Sorry, no pollution data could be found within ${radius} of this city`));
+      }
     }
   });
 };

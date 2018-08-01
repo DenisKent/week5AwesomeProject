@@ -60,6 +60,18 @@ var updateLocalData = function(data) {
   }
 };
 
+var updateCompareData = function(data) {
+  for (i = 0; i < data.measurements.length; i++) {
+    if (data.measurements[i].parameter === 'pm10') {
+      document.getElementById('compare_pm10').textContent = data.measurements[i].value;
+    } else if (data.measurements[i].parameter === 'no2') {
+      document.getElementById('compare_no2').textContent = data.measurements[i].value;
+    } else if (data.measurements[i].parameter === 'o3') {
+      document.getElementById('compare_o3').textContent = data.measurements[i].value;
+    }
+  }
+};
+
 function removeChildren(obj) {
   while (obj.hasChildNodes()) {
     obj.removeChild(obj.firstChild);

@@ -1,7 +1,87 @@
-body {
-  background: #fff;
+body{
+  margin: 0px;
   text-align: center;
+  font-family: 'Rubik', sans-serif;
 }
+h1 {
+  margin: 0px;
+  padding-top: 8%;
+  padding-bottom: 12%;
+  font-family: 'Concert One', cursive;
+  font-size: 40px;
+}
+h3{
+  font-size: 16px;
+}
+section{
+  padding-top: 3%;
+  padding-bottom: 3%;
+}
+ul, li{
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+#cityInputBox{
+  /* background-image: image(https://icon2.kisspng.com/20171221/odw/black-smoke-5a3c0ca177d2e2.1849037915138848334908.jpg); */
+}
+
+/*
+============================
+         STRUCTURE
+============================
+*/
+#city-comparison {
+  display: grid;
+  width:90%;
+  max-width:700px;
+  margin: auto;
+  grid-template-columns: 1fr 2fr 2fr;
+}
+
+#scientific-info {
+  width:80%;
+  margin: auto;
+}
+
+
+/*
+============================
+       BACKGROUND
+============================
+*/
+/* The falling particles */
+#particle-container{
+  margin: 0px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+canvas{
+  display:block;
+  position: fixed;
+  background: linear-gradient(to bottom, rgb(219, 227, 240), rgb(198, 226, 240));
+}
+/* The rising smoke */
+/* #smoke{
+  width:10%;
+  opacity: 0.05;
+}
+
+@keyframes mymove {
+  from {bottom: -100px;}
+  to {bottom: 1500px;}
+}
+#smoke {
+  position:fixed;
+  left:10px;
+  animation-duration: 20s;
+  animation-name: mymove;
+  animation-delay: -1s;
+  animation-iteration-count: infinite;
+} */
 
 /*
 ============================
@@ -9,6 +89,15 @@ body {
 ============================
 */
 @media only screen and (min-width: 601px) {
+  h1 {
+    margin: 0px;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    font-size: 55px;
+  }
+  h3{
+    font-size: 25px;
+  }
 }
 
 /*
@@ -18,4 +107,8 @@ body {
 */
 
 @media only screen and (min-width: 1001px) {
+
+  #city-comparison {
+    width:70%;
+  }
 }

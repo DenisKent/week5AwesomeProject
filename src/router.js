@@ -1,5 +1,9 @@
 const {
-  homePage, pollutionDataHandler, assetsHandler, autocompleteHandler, notFound,
+  homePage,
+  pollutionDataHandler,
+  assetsHandler,
+  autocompleteHandler,
+  notFound,
 } = require('./handlers');
 
 const assetURLs = [
@@ -9,6 +13,7 @@ const assetURLs = [
   '/xhr.js',
   '/supertest-500',
   '/background.js',
+  '/weather.png',
 ];
 /* Router fn to deal with 4 requests - the homepage, an asset (e.g. CSS file),
 a client data request and an else which produces a 404 page. These requests call

@@ -7,7 +7,7 @@ var cityInput = document.getElementById('cityInputBox');
 cityInput.addEventListener('keyup', function() {
   /* Collects the user's input from the box */
   // userInput = document.getElementById('cityInputBox').value;
-  console.log(autocomplete(cityInput.value));
+  autocomplete(cityInput.value);
   /* Calls the fn severDataRequest (in xhr.js) with the user's input */
   // pollutionDataRequest(userInput);
 });

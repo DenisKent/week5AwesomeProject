@@ -14,7 +14,7 @@
     <header>
       <h1>Awesome Air</h1>
     </header>
-    <section>
+    <section id="dropdown-box">
       <p>Compare air pollution in your area with another city:</p>
       <input id="cityInputBox" type="text" placeholder="e.g. Shanghai" list="citiesDropdown" autocomplete="off" value="" maxlength="30" required/>
       <ul id="citiesDropdown">
@@ -24,7 +24,6 @@
       <div>
         <h3>Pollutant</h3>
         <ul>
-          <li>CO2</li>
           <li>NO2</li>
           <li>O3</li>
           <li>PM10</li>
@@ -33,19 +32,17 @@
       <div>
         <h3>Your City</h3>
         <ul>
-          <li>-</li>
-          <li>-</li>
-          <li>-</li>
-          <li>-</li>
+          <li id="local_no2">-</li>
+          <li id="local_o3">-</li>
+          <li id="local_pm10">-</li>
         </ul>
       </div>
       <div>
         <h3>Comparator</h3>
         <ul>
-          <li>-</li>
-          <li>-</li>
-          <li>-</li>
-          <li>-</li>
+          <li id="compare_no2">-</li>
+          <li id="compare_o3">-</li>
+          <li id="compare_pm10">-</li>
         </ul>
       </div>
     </section>

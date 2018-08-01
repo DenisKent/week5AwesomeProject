@@ -42,16 +42,23 @@ const assetsHandler = (url, response) => {
   });
 };
 
-const searchHandler = (request, response) => {
-  let allData = '';
+/* Fn to handle data requests from the frontend using the POST method. */
 
+const searchHandler = (request, response) => {
+  /* Using post method so data is coming in streams, need to create a variable
+  to store all data */
+  let allData = '';
+  /* Method to capture each stream of data and store it in the 'allData'
+  variable  */
   request.on('data', (data) => {
     allData += data;
   });
-
+  /* Method to trigger when all data has been received */
   request.on('end', () => {
     console.log(allData);
+    /* Define the response headers - which is 200 and JSON */
     response.writeHead(200, { 'Content-Type': 'application/json' });
+    /* Response sent back to the server */
     response.end(`This is from the server!${allData}`);
   });
 };

@@ -1,6 +1,12 @@
 const {
-  homePage, pollutionDataHandler, assetsHandler, autocompleteHandler, notFound,
+  homePage,
+  pollutionDataHandler,
+  assetsHandler,
+  autocompleteHandler,
+  notFound,
 } = require('./handlers');
+
+const requestsFunct = require('./requests');
 
 const assetURLs = [
   '/index.html',
@@ -21,6 +27,8 @@ const router = (request, response) => {
     assetsHandler(url, response);
   } else if (url.includes('/get-pollution-data')) {
     pollutionDataHandler(request, response);
+  } else if (url.includes('/test')) {
+    requestsFunct.pollutionDataRequest(51.5074, 0.1278, console.log);
   } else if (url.includes('/autocomplete-city')) {
     autocompleteHandler(request, response);
   } else {

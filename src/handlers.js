@@ -58,8 +58,7 @@ const pollutionDataHandler = (request, response) => {
   /* Method to trigger when all data has been received */
   request.on('end', () => {
     allData = JSON.parse(allData);
-    console.log(allData);
-    pollutionDataRequest(allData.latitude, allData.longitude, (APIresp) => {
+    pollutionDataRequest(allData.lat, allData.long, (APIresp) => {
       /* Define the response headers - which is 200 and JSON */
       response.writeHead(200, { 'Content-Type': 'application/json' });
       /* Response sent back to the server */

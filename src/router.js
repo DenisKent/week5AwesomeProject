@@ -1,4 +1,6 @@
-const handlers = require('./handlers');
+const {
+  homePage, pollutionDataHandler, assetsHandler, autocompleteHandler, notFound,
+} = require('./handlers');
 
 const assetURLs = [
   '/index.html',
@@ -12,15 +14,17 @@ const assetURLs = [
 a client data request and an else which produces a 404 page. These requests call
 on functions in the handlers file to produce a response. */
 const router = (request, response) => {
-  const url = request.url;
+  const { url } = request;
   if (url === '/') {
-    handlers.homePage(response);
-  } else if (url.includes('/get-data')) {
-    handlers.searchHandler(request, response);
+    homePage(response);
   } else if (assetURLs.includes(url)) {
-    handlers.assetsHandler(url, response);
+    assetsHandler(url, response);
+  } else if (url.includes('/get-pollution-data')) {
+    pollutionDataHandler(request, response);
+  } else if (url.includes('/autocomplete-city')) {
+    autocompleteHandler(request, response);
   } else {
-    handlers.notFound(response);
+    notFound(response);
   }
 };
 

@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const citySearch = require('./search.js');
 
 /* Function to handle requests for the homePage and send back appropriate response */
 
@@ -44,7 +45,7 @@ const assetsHandler = (url, response) => {
 
 /* Fn to handle data requests from the frontend using the POST method. */
 
-const searchHandler = (request, response) => {
+const pollutionDataHandler = (request, response) => {
   /* Using post method so data is coming in streams, need to create a variable
   to store all data */
   let allData = '';
@@ -55,13 +56,26 @@ const searchHandler = (request, response) => {
   });
   /* Method to trigger when all data has been received */
   request.on('end', () => {
-    console.log(allData);
     /* Define the response headers - which is 200 and JSON */
     response.writeHead(200, { 'Content-Type': 'application/json' });
     /* Response sent back to the server */
     response.end(`This is from the server!${allData}`);
   });
 };
+
+/* Fn to handle auto complete requests */
+
+const autocompleteHandler = (request, response) => {
+  const { url } = request;
+  let [, query] = url.split('q=');
+  /* Decoding deals with issues related to URL encoding */
+  query = decodeURI(query);
+  /* citySearch function returns an array of city objects for autocomplete */
+  const cityList = citySearch(query);
+  response.writeHead(200, { 'Content-Type': 'application/json' });
+  response.end(JSON.stringify(cityList));
+};
+
 
 /* Function to handle 404 Pages (Pages not found) and return the appropriate
 response code and content */
@@ -75,5 +89,6 @@ module.exports = {
   homePage,
   notFound,
   assetsHandler,
-  searchHandler,
+  pollutionDataHandler,
+  autocompleteHandler,
 };

@@ -34,8 +34,8 @@ const pollutionDataRequest = (lat, long, cb, radius = 500000) => {
             chosenCity = city;
           }
         });
-        cb(null, chosenCity);
-      } else { cb(new Error(`Sorry, no pollution data could be found within ${radius} of this city`)); }
+        cb(chosenCity);
+      } else { cb('error no city was chosen'); }
     }
   });
 };

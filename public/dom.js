@@ -27,10 +27,24 @@ var populateDropdown = function(cityList){
   });
 }
 
-const removeChildren = (obj) => {
+function removeChildren(obj) {
   while (obj.hasChildNodes()) {
     obj.removeChild(obj.firstChild);
   }
 };
+
+function cityDataRequest() {
+    var val = document.getElementById("cityInputBox").value;
+    var opts = document.getElementById("citiesDropdown").childNodes;
+    for (var i = 0; i < opts.length; i++) {
+      if (opts[i].value === val) {
+        // An item was selected from the list!
+        // yourCallbackHere()
+        alert(opts[i].value);
+        break;
+      }
+    }
+  }
+
 
   // pollutionDataRequest(userInput);

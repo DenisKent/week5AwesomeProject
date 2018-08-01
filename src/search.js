@@ -16,7 +16,7 @@ const citySearch = (input, cities = citiesJSON) => {
   // Sorts matches, shorter matches are at the front. User typed cities will be prefered
   const sortedMatches = allMatches.sort((a, b) => a.name.length - b.name.length);
   // Cuts off all but top 4 cities
-  const top4Matches = sortedMatches.slice(0, 3);
+  const top4Matches = sortedMatches.slice(0, 4);
   return top4Matches;
 };
 

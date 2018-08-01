@@ -15,7 +15,7 @@ cityInput.addEventListener('keyup', function() {
 });
 
 var populateDropdown = function(cityList){
-  console.log(cityList);
+  removeChildren(citiesDropdown);
   cityList.forEach(function(city){
     /* Create an option element for each city. Each option elemnt has two spans in it with the city name and city country*/
     var option = document.createElement("option");
@@ -26,5 +26,11 @@ var populateDropdown = function(cityList){
     citiesDropdown.appendChild(option);
   });
 }
+
+const removeChildren = (obj) => {
+  while (obj.hasChildNodes()) {
+    obj.removeChild(obj.firstChild);
+  }
+};
 
   // pollutionDataRequest(userInput);

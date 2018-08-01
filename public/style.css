@@ -53,6 +53,12 @@ li {
   padding: 0px;
   margin: 0px;
 }
+.warning{
+  width: 60%;
+  margin: auto;
+  display: block;
+  background-color: rgb(208, 218, 94);
+}
 
 #cityInputBox {
   /* background-image: image(https://icon2.kisspng.com/20171221/odw/black-smoke-5a3c0ca177d2e2.1849037915138848334908.jpg); */

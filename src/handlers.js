@@ -58,12 +58,25 @@ const pollutionDataHandler = (request, response) => {
   /* Method to trigger when all data has been received */
   request.on('end', () => {
     allData = JSON.parse(allData);
-    pollutionDataRequest(allData.lat, allData.long, (APIresp) => {
-      /* Define the response headers - which is 200 and JSON */
-      response.writeHead(200, { 'Content-Type': 'application/json' });
-      /* Response sent back to the server */
-      response.end(JSON.stringify(APIresp));
-    });
+    const dataClean = Object.prototype.hasOwnProperty.call(allData, 'lat') && Object.prototype.hasOwnProperty.call(allData, 'long');
+    console.log(dataClean);
+    if (dataClean) {
+      pollutionDataRequest(allData.lat, allData.long, (err, APIresp) => {
+        if (err) {
+          /* In the case that there is no data for these coordinates, it will
+           return a 204 response (i.e. no content) */
+          response.writeHead(204, { 'Content-Type': 'text/plain' });
+          response.end(err.message);
+        } else {
+          /* Define the response headers - which is 200 and JSON */
+          response.writeHead(200, { 'Content-Type': 'application/json' });
+          response.end(JSON.stringify(APIresp));
+        }
+      });
+    } else {
+      response.writeHead(404, { 'Content-Type': 'text/plain' });
+      response.end('Coordinate data is not in the expected format');
+    }
   });
 };
 
@@ -74,6 +87,8 @@ const autocompleteHandler = (request, response) => {
   let [, query] = url.split('q=');
   /* Decoding deals with issues related to URL encoding */
   query = decodeURI(query);
+  // Cleanses all non alphanumeric data out of the query
+  query = query.replace(/[^a-zA-Z0-9 -]/g, '');
   /* citySearch function returns an array of city objects for autocomplete */
   const cityList = citySearch(query);
   response.writeHead(200, { 'Content-Type': 'application/json' });

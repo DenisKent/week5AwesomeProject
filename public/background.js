@@ -5,7 +5,7 @@
 particlesJS('particle-container', {
   particles: {
     number: {
-      value: 40,
+      value: 3,
       density: {
         enable: true,
         value_area: 800,
@@ -15,7 +15,7 @@ particlesJS('particle-container', {
       value: '#575050',
     },
     shape: {
-      type: 'circle',
+      type: 'image',
       stroke: {
         width: 0,
         color: '#000000',
@@ -24,9 +24,9 @@ particlesJS('particle-container', {
         nb_sides: 5,
       },
       image: {
-        src: 'img/github.svg',
-        width: 100,
-        height: 100,
+        src: 'https://user-images.githubusercontent.com/28222381/43522594-7f3d8870-95a2-11e8-94fd-21b47c168bc2.png',
+        width: 500,
+        height: 500,
       },
     },
     opacity: {
@@ -40,7 +40,7 @@ particlesJS('particle-container', {
       },
     },
     size: {
-      value: 2,
+      value: 15,
       random: true,
       anim: {
         enable: false,

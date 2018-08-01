@@ -1,17 +1,32 @@
 /* eslint-disable*/
 
+// Sets up geolocation to get user IP coordinates, and pass them on
+// to the localPollutionDataRequest function
 window.addEventListener('load', function(event) {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(localPollutionDataRequest);
+    navigator.geolocation.getCurrentPosition(localPollutionDataRequest,
+      function(error){
+        //Error code is 1 when user doesn't allow location to be shared
+        if (error.code == 1){warningMessage("Testers- trying to break our app by declining geolocation..? Better luck next time.");
+      } else {
+        warningMessage("Sorry, we can't find your location. Feel free to look at the listed major cities.");
+      }
+    });
   } else {
-    x.innerHTML = 'Geolocation is not supported by this browser.';
+    warningMessage("Sorry, we can't find your location. Feel free to look at the listed major cities.");
   }
 });
 
+//Fn to use geolocation data to make a polution request and update the local data table
 function localPollutionDataRequest(position) {
   var coordinates = { lat: position.coords.latitude, long: position.coords.longitude };
-  console.log(coordinates);
-  pollutionDataRequest(coordinates, updateLocalData);
+  pollutionDataRequest(coordinates, (err, city) => {
+    if (err) {
+      warningMessage("Sorry, we don't collect air quality data for your local area. Feel free to look at the listed major cities.");
+    } else {
+      updateLocalData(city);
+    }
+  });
 }
 
 /* Assigned the submitBtn from the DOM to the var */
@@ -45,9 +60,16 @@ var populateDropdown = function(cityList) {
     li.appendChild(divCountry);
     //When the drop down is clicked, make the data request and pass it to the handler
     li.addEventListener('click', function() {
-      console.log(city.latitude);
       var coordinates = { lat: city.latitude, long: city.longitude };
-      pollutionDataRequest(coordinates, updateCompareData);
+      pollutionDataRequest(coordinates, (err, city) => {
+        if (err) {
+          warningMessage(err.message,4000);
+        } else {
+          updateCompareData(city);
+        }
+      });
+      cityInput.value = city.name;
+      removeChildren(citiesDropdown);
     });
   });
 };
@@ -65,6 +87,7 @@ var updateLocalData = function(data) {
 };
 
 var updateCompareData = function(data) {
+  console.log('hello', data);
   for (i = 0; i < data.measurements.length; i++) {
     if (data.measurements[i].parameter === 'pm10') {
       document.getElementById('compare_pm10').textContent = data.measurements[i].value;
@@ -79,5 +102,17 @@ var updateCompareData = function(data) {
 function removeChildren(obj) {
   while (obj.hasChildNodes()) {
     obj.removeChild(obj.firstChild);
+  }
+}
+
+function warningMessage(text, delay) {
+  var warning = document.createElement("span");
+  warning.classList.add('warning');
+  warning.textContent = text;
+  cityInput.parentNode.insertBefore(warning,cityInput);
+  if(delay){
+    setTimeout(function(){
+      warning.remove();
+    },delay);
   }
 }

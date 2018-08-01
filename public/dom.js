@@ -1,16 +1,6 @@
 /* eslint-disable*/
 
 window.addEventListener('load', function(event) {
-  // var x = document.getElementById('demo');
-  // if (navigator.geolocation) {
-  //   navigator.geolocation.getCurrentPosition(showPosition);
-  // } else {
-  //   x.innerHTML = 'Geolocation is not supported by this browser.';
-  // }
-  // function showPosition(position) {
-  //   x.innerHTML =
-  //     'Latitude: ' + position.coords.latitude + '<br>Longitude: ' + position.coords.longitude;
-  // }
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(localPollutionDataRequest);
   } else {
@@ -42,12 +32,19 @@ var populateDropdown = function(cityList) {
   removeChildren(citiesDropdown);
   cityList.forEach(function(city) {
     /* Create an option element for each city. Each option elemnt has two spans in it with the city name and city country*/
-    var option = document.createElement('option');
-    option.value = city.name;
-    var country = document.createElement('span');
-    country.textContent = city['Alternate country code'];
+    var option = document.createElement("option");
+    var name = document.createElement("span");
+    var country = document.createElement("span");
+    name.value = city.name;
+    country.value = city["Alternate country code"];
+    option.appendChild(name);
     option.appendChild(country);
     citiesDropdown.appendChild(option);
+    //When the drop down is clicked, make the data request and pass it to the handler
+    option.addEventListener('click', function(){
+      var coordinates = {lat: city.latitude, long:city.longitude}
+      pollutionDataRequest(coordinates,console.log)
+    })
   });
 };
 
@@ -56,18 +53,3 @@ function removeChildren(obj) {
     obj.removeChild(obj.firstChild);
   }
 }
-
-function cityDataRequest() {
-  var val = document.getElementById('cityInputBox').value;
-  var opts = document.getElementById('citiesDropdown').childNodes;
-  for (var i = 0; i < opts.length; i++) {
-    if (opts[i].value === val) {
-      // An item was selected from the list!
-      // yourCallbackHere()
-      alert(opts[i].value);
-      break;
-    }
-  }
-}
-
-// pollutionDataRequest(userInput);

@@ -32,21 +32,25 @@ var populateDropdown = function(cityList) {
   removeChildren(citiesDropdown);
   cityList.forEach(function(city) {
     /* Create an option element for each city. Each option elemnt has two spans in it with the city name and city country*/
-    var option = document.createElement("option");
-    var name = document.createElement("span");
-    var country = document.createElement("span");
+    var option = document.createElement('option');
+    var name = document.createElement('span');
+    var country = document.createElement('span');
     name.value = city.name;
-    country.value = city["Alternate country code"];
+    country.value = city['Alternate country code'];
     option.appendChild(name);
     option.appendChild(country);
     citiesDropdown.appendChild(option);
     //When the drop down is clicked, make the data request and pass it to the handler
-    option.addEventListener('click', function(){
-      var coordinates = {lat: city.latitude, long:city.longitude}
-      pollutionDataRequest(coordinates,console.log)
-    })
+    option.addEventListener('click', function() {
+      var coordinates = { lat: city.latitude, long: city.longitude };
+      pollutionDataRequest(coordinates);
+    });
   });
 };
+
+function updateData(data) {
+  console.log(data.measurements[0]);
+}
 
 function removeChildren(obj) {
   while (obj.hasChildNodes()) {

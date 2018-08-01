@@ -1,6 +1,6 @@
 const request = require('request');
-const fs = require('fs');
 
+// Checks if city has enough pollution and distance data
 const cityHasData = (city, pollutants = ['pm10', 'no2', 'o3']) => {
   const tracker = [false, false, false];
   city.measurements.forEach((measure) => {
@@ -9,30 +9,33 @@ const cityHasData = (city, pollutants = ['pm10', 'no2', 'o3']) => {
       tracker[index] = true;
     }
   });
-  return tracker === [true, true, true];
+  // The distance property is required to filter out far away results
+  const hasDistance = Object.prototype.hasOwnProperty.call(city, 'distance');
+  const test = tracker.reduce((acc, ele) => (ele ? acc + 1 : acc), 0);
+  return (test >= 2) && hasDistance;
 };
 
 // The code below is used to get Air quality data using lat,long & radius .s
-const pollutionDataRequest = (lat, long, cb, radius = 50000) => {
-  const url = `https://api.openaq.org/v1/latest?limit=500coordinates=${lat},${long}&radius=${radius}`;
+const pollutionDataRequest = (lat, long, cb, radius = 500000) => {
+  const limit = 1000;
+  const url = `https://api.openaq.org/v1/latest?coordinates=${lat},${long}&radius=${radius}&limit=${limit}`;
   request(url, (err, res, body) => {
     if (err) {
       console.log(err);
     } else {
       // We should check that the response is 200
       const cityArray = JSON.parse(body).results;
-      const closestCity = cityArray.reduce((acc, city, index) => {
-        // If acc is empty then take the first city
-        if (index === 0) {
-          return city;
-          // Test if city has enough data for us and if it is closer than acc
-        }
-        if (cityHasData(city) && city.distance < acc.distance) {
-          return city;
-        }
-        return acc;
-      }, {});
-      cb(closestCity);
+      if (cityArray.length > 0) {
+        let chosenCity = '';
+        cityArray.forEach((city) => {
+          if (cityHasData(city) && !chosenCity) {
+            chosenCity = city;
+          } else if (cityHasData(city) && city.distance < chosenCity.distance) {
+            chosenCity = city;
+          }
+        });
+        cb(chosenCity);
+      } else { cb('error no city was chosen'); }
     }
   });
 };

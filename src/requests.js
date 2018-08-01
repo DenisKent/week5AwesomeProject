@@ -21,7 +21,9 @@ const fs = require('fs');
 //   }
 // });
 
-// The code below is used to get Air quality data using lat,long & radius .s
+// The code below is used to get Air quality data using lat,long & radius */
+
+const urlConstructor = () 
 const url = 'https://api.openaq.org/v1/latest?coordinates=32.6996,35.3035&radius=8000';
 request(url, (err, res, body) => {
   if (err) {

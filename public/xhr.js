@@ -11,7 +11,7 @@ function pollutionDataRequest (userInput) {
   xhr.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       // Action to be performed when the document is ready:
-      console.log(xhr.responseText);
+      console.log(JSON.parse(xhr.responseText));
     }
   };
   /* Open POST request with URL  */
@@ -22,7 +22,7 @@ function pollutionDataRequest (userInput) {
   xhr.send(userInput);
 }
 
-function autocomplete (userInput){
+function autocomplete (userInput,cb){
   /* Create new request */
   var xhr = new XMLHttpRequest();
   /* URL is get-pollution-data, we pass through the query to the end of it. It most also be encoded so it can be decoded on the back-end */
@@ -32,7 +32,7 @@ function autocomplete (userInput){
   xhr.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       // Action to be performed when the document is ready:
-      console.log(xhr.responseText);
+      cb(JSON.parse(xhr.responseText));
     }
   };
   /* Open POST request with URL  */

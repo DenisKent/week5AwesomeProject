@@ -58,6 +58,12 @@ li {
   padding: 0px;
   margin: 0px;
 }
+.warning{
+  width: 60%;
+  margin: auto;
+  display: block;
+  background-color: rgb(208, 218, 94);
+}
 
 #scientific-info {
   background: white;

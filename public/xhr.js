@@ -2,7 +2,6 @@
 /* Function to get a request from the server based on the user's input */
 
 function pollutionDataRequest(coordinates, cb) {
-  console.log(cb);
   /* Create new request */
   var xhr = new XMLHttpRequest();
   /* URL is get-pollution-data*/
@@ -12,8 +11,17 @@ function pollutionDataRequest(coordinates, cb) {
   xhr.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       // Action to be performed when the document is ready:
-      cb(JSON.parse(xhr.responseText));
+      cb(null, JSON.parse(xhr.responseText));
     }
+    if (this.readyState == 4 && this.status == 204) {
+      //Passes through an error if no data is returned
+      cb(new Error ("Sorry no air quality data could be found close to this city. Try another one."));
+    }
+    if (this.readyState == 4 && this.status == 404) {
+      //Passes through an error if no data is returned
+      cb(new Error ("City coordinate data is formatted incorrectly."));
+    }
+
   };
   /* Open POST request with URL  */
   xhr.open('POST', url, true);

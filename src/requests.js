@@ -1,25 +1,5 @@
 const request = require('request');
 const fs = require('fs');
-// the commented code was used to populate the cityList.json & countryList.json files.
-// const url = 'https://api.openaq.org/v1/cities?limit=10000';
-// const url = 'https://api.openaq.org/v1/countries?limit=10000';
-// request(url, (err, res, body) => {
-//   fs.writeFile('./src/countryList.json', body, (err) => {
-//     if (err) {
-//       console.log(err);
-//     }
-//   });
-// });
-
-// The code below was used to test the APIs searched by city function.
-// const url = 'https://api.openaq.org/v1/latest?country=US&city=NEW%20YORK';
-// request(url, (err, res, body) => {
-//   if (err) {
-//     console.log(err);
-//   } else {
-//     console.log(body);
-//   }
-// });
 
 const cityHasData = (city, pollutants = ['pm10', 'no2', 'o3']) => {
   const tracker = [false, false, false];
@@ -57,6 +37,4 @@ const pollutionDataRequest = (lat, long, cb, radius = 50000) => {
   });
 };
 
-module.exports = {
-  pollutionDataRequest,
-};
+module.exports = pollutionDataRequest;

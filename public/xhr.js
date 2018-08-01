@@ -1,7 +1,7 @@
 /* eslint-disable*/
 /* Function to get a request from the server based on the user's input */
 
-function pollutionDataRequest (userInput) {
+function pollutionDataRequest (city) {
   /* Create new request */
   var xhr = new XMLHttpRequest();
   /* URL is get-pollution-data*/
@@ -17,9 +17,9 @@ function pollutionDataRequest (userInput) {
   /* Open POST request with URL  */
   xhr.open('POST', url, true);
   /* Setting create request header for form input */
-  xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+  xhr.setRequestHeader('Content-type', 'application/json');
   /* Send the user's input in the body of the request */
-  xhr.send(userInput);
+  xhr.send(city);
 }
 
 function autocomplete (userInput,cb){

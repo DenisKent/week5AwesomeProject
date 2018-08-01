@@ -16,9 +16,9 @@
     </header>
     <section>
       <p>Compare air pollution in your area with another city:</p>
-      <input id="cityInputBox" type="text" placeholder="e.g. Shanghai" list="citiesDropdown" autocomplete="off" oninput='cityDataRequest()' value=""/>
-      <datalist id="citiesDropdown">
-      </datalist>
+      <input id="cityInputBox" type="text" placeholder="e.g. Shanghai" list="citiesDropdown" autocomplete="off" value="" maxlength="30" required/>
+      <ul id="citiesDropdown">
+      </ul>
     </section>
     <section id = "city-comparison">
       <div>

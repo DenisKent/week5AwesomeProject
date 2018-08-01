@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const citySearch = require('./search.js');
+const pollutionDataRequest = require('./requests');
 
 /* Function to handle requests for the homePage and send back appropriate response */
 
@@ -56,10 +57,12 @@ const pollutionDataHandler = (request, response) => {
   });
   /* Method to trigger when all data has been received */
   request.on('end', () => {
-    /* Define the response headers - which is 200 and JSON */
-    response.writeHead(200, { 'Content-Type': 'application/json' });
-    /* Response sent back to the server */
-    response.end(`This is from the server!${allData}`);
+    pollutionDataRequest(allData.latitude, allData.longitude, (APIresp) => {
+      /* Define the response headers - which is 200 and JSON */
+      response.writeHead(200, { 'Content-Type': 'application/json' });
+      /* Response sent back to the server */
+      response.end(APIresp);
+    });
   });
 };
 

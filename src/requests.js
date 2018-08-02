@@ -15,6 +15,22 @@ const cityHasData = (city, pollutants = ['pm10', 'no2', 'o3']) => {
   return test >= 2 && hasDistance;
 };
 
+// Converts ppm units into µg/m³ so that data is comparable
+const convertUnits = (city, pollutants = ['no2', 'o3']) => {
+  const molecularMassArr = [46, 48];
+  city.measurements.forEach((measure) => {
+    if (pollutants.includes(measure.parameter) && measure.unit === 'ppm') {
+      measure.unit = 'µg/m³';
+      // µg/m³ = ppm * (Molecular mass/ molar volume of air at 25degrees)/1000
+      const molMass = molecularMassArr[pollutants.indexOf(measure.parameter)];
+      measure.value = measure.value * (molMass / 24.45) * 1000;
+      measure.value = Math.round(measure.value * 10) / 10;
+    }
+    return measure;
+  });
+  return city;
+};
+
 // The code below is used to get Air quality data using lat,long & radius .s
 const pollutionDataRequest = (lat, long, cb, radius = 500000) => {
   const limit = 1000;
@@ -34,7 +50,7 @@ const pollutionDataRequest = (lat, long, cb, radius = 500000) => {
             chosenCity = city;
           }
         });
-        cb(null, chosenCity);
+        cb(null, convertUnits(chosenCity));
       } else {
         cb(new Error(`Sorry, no pollution data could be found within ${radius} of this city`));
       }

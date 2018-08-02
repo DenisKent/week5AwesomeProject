@@ -67,16 +67,38 @@ function pollutionDataRequest(coordinates, cb) {
 
 We used ES6 Syntax throughout our back-end code and learnt a few new things
 
-#### Deconstruc
+#### Object Deconstructor
+
+When creating new variables from objects, we learnt to use the following syntax:
+
+```
+const { url } = request;
+```
+
+Which is equivalent to (ES5):
+
+```
+var url = url.request;
+```
+
+#### Template Literals
+
+Template literals were also used as a much cleaner way to input varaibles into a string.
+
+```
+  const url = `https://api.openaq.org/v1/latest?coordinates=${lat},${long}&radius=${radius}&limit=${limit}`;
+```
+
+### Error Handling
 
 ## Core Requirements :white_check_mark: :white_check_mark:
 
 - [x] Use at least 1 API #3
 - [x] Make your API calls from the back-end using the Request module (or one you build yourself)
 - [x] Your server should contain a minimum of 2 routes
-- [ ] We expect back-end testing using Tape (test as many components as you can) and basic front-end testing.
+- [x] We expect back-end testing using Tape (test as many components as you can) and basic front-end testing.
 - [x] Test your server by injecting fake HTTP requests using Supertest (consider testing for 404's and 500's). #8
-- [ ] Host your project on Heroku, see resources
+- [x] Host your project on Heroku, see resources
 - [x] Use module.exports and require to break a single large server file into smaller modules.
 - [x] Consider a good server file structure based on what we have discussed over the week.
 - [x] Employ continuous intergration on your project with Travis or a similar tool. (If you decide to use Travis, we strongly recommend that you host this project in your own repo rather than in your cohort's FAC repository to avoid all builds getting queued together) #15

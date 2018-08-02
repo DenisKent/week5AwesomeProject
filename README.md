@@ -21,7 +21,7 @@ Our website has 4 distinct sections:
 
 ## Interesting Code
 
-There are a number of interesting parts to our code on this project
+There are a number of interesting parts to our code on this project:
 
 ### Commenting
 
@@ -29,7 +29,7 @@ We used commenting as much as possible throughout the projct. This has 2 key ben
 
 The team found it very useful to write comment code and definitely worth the additional time it takes.
 
-```
+```javascript
 /* Function to get a request from the server based on the user's input */
 
 function pollutionDataRequest(coordinates, cb) {
@@ -71,13 +71,13 @@ We used ES6 Syntax throughout our back-end code and learnt a few new things
 
 When creating new variables from objects, we learnt to use the following syntax:
 
-```
+```javascript
 const { url } = request;
 ```
 
 Which is equivalent to (ES5):
 
-```
+```javascript
 var url = url.request;
 ```
 
@@ -85,11 +85,39 @@ var url = url.request;
 
 Template literals were also used as a much cleaner way to input varaibles into a string.
 
-```
-  const url = `https://api.openaq.org/v1/latest?coordinates=${lat},${long}&radius=${radius}&limit=${limit}`;
+```javascript
+const url = `https://api.openaq.org/v1/latest?coordinates=${lat},${long}&radius=${radius}&limit=${limit}`;
 ```
 
 ### Error Handling
+
+We implemented an error first approach to the handlers, as defined in our workshops.
+
+We also handled errors on the client side, showing a highly visible error message above the search box, for the following scenarios:
+
+#### No data received
+
+```javascript
+if (this.readyState == 4 && this.status == 204) {
+  //Passes through an error if no data is returned
+  cb(new Error('Sorry no air quality data could be found close to this city. Try another one.'));
+}
+```
+
+#### User declines to share location data with the app.
+
+```javascript
+//Error code is 1 when user doesn't allow location to be shared
+if (error.code == 1) {
+  warningMessage(
+    'Testers- trying to break our app by declining geolocation..? Better luck next time.',
+  );
+} else {
+  warningMessage(
+    "Sorry, we can't find your location. Feel free to look at the listed major cities.",
+  );
+}
+```
 
 ## Core Requirements :white_check_mark: :white_check_mark:
 

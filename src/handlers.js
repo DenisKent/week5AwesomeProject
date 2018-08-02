@@ -74,7 +74,7 @@ const pollutionDataHandler = (request, response) => {
         }
       });
     } else {
-      response.writeHead(404, { 'Content-Type': 'text/plain' });
+      response.writeHead(422, { 'Content-Type': 'text/plain' });
       response.end('Coordinate data is not in the expected format');
     }
   });

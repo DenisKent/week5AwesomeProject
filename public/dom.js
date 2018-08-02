@@ -7,7 +7,7 @@ window.addEventListener('load', function(event) {
     navigator.geolocation.getCurrentPosition(localPollutionDataRequest,
       function(error){
         //Error code is 1 when user doesn't allow location to be shared
-        if (error.code == 1){warningMessage("Testers- trying to break our app by declining geolocation..? Better luck next time.");
+        if (error.code == 1){warningMessage("Testers- trying to break our app by declining geolocation..? Better luck next time. We won't be able to find pollution statistics for your location.");
       } else {
         warningMessage("Sorry, we can't find your location. Feel free to look at the listed major cities.");
       }

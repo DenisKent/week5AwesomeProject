@@ -8,7 +8,7 @@ window.addEventListener('load', function(event) {
       //Error code is 1 when user doesn't allow location to be shared
       if (error.code == 1) {
         warningMessage(
-          'Testers- trying to break our app by declining geolocation..? Better luck next time.',
+          "Testers- trying to break our app by declining geolocation..? Better luck next time. We won't be able to find pollution statistics for your location.",
         );
       } else {
         warningMessage(

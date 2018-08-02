@@ -58,8 +58,8 @@ const pollutionDataHandler = (request, response) => {
   /* Method to trigger when all data has been received */
   request.on('end', () => {
     allData = JSON.parse(allData);
+    /* The data is validated by checking if it has the properties long and lat */
     const dataClean = Object.prototype.hasOwnProperty.call(allData, 'lat') && Object.prototype.hasOwnProperty.call(allData, 'long');
-    console.log(dataClean);
     if (dataClean) {
       pollutionDataRequest(allData.lat, allData.long, (err, APIresp) => {
         if (err) {
@@ -74,7 +74,7 @@ const pollutionDataHandler = (request, response) => {
         }
       });
     } else {
-      response.writeHead(404, { 'Content-Type': 'text/plain' });
+      response.writeHead(422, { 'Content-Type': 'text/plain' });
       response.end('Coordinate data is not in the expected format');
     }
   });

@@ -8,19 +8,19 @@ function pollutionDataRequest(coordinates, cb) {
   var url = '/get-pollution-data';
   /* Setting call back function for when response is received  */
   xhr.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      // Action to be performed when the document is ready:
-      cb(null, JSON.parse(xhr.responseText));
-    }
-    if (this.readyState == 4 && this.status == 204) {
-      //Passes through an error if no data is returned
-      cb(
-        new Error('Sorry no air quality data could be found close to this city. Try another one.'),
-      );
-    }
-    if (this.readyState == 4 && this.status == 404) {
-      //Passes through an error if no data is returned
-      cb(new Error('City coordinate data is formatted incorrectly.'));
+    if (this.readyState == 4) {
+      if (this.status == 200){
+        // Action to be performed when the document is ready:
+        cb(null, JSON.parse(xhr.responseText));
+      } else if (this.status == 204) {
+        //Passes through an error if no data is returned
+        cb(
+          new Error('Sorry no air quality data could be found close to this city. Try another one.'),
+        );
+      } else if (this.status == 404) {
+        //Passes through an error if formatted incorrectly
+        cb(new Error('City coordinate data is formatted incorrectly.'));
+      }
     }
   };
   /* Open POST request with URL  */

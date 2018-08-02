@@ -69,11 +69,13 @@ var populateDropdown = function(cityList) {
     //When the drop down is clicked, make the data request and pass it to the handler
     li.addEventListener('click', function() {
       var coordinates = { lat: city.latitude, long: city.longitude };
-      pollutionDataRequest(coordinates, (err, city) => {
+      document.getElementById("comparator-city").textContent=city.name;
+pollutionDataRequest(coordinates, (err, city) => {
         if (err) {
           warningMessage(err.message, 4000);
         } else {
           updateCompareData(city);
+          // document.getElementById("comparator-city").textContent=city.name;
         }
       });
       cityInput.value = city.name;
@@ -83,6 +85,7 @@ var populateDropdown = function(cityList) {
 };
 
 var updateLocalData = function(data) {
+document.getElementById("your-city").textContent=data.city;
   for (i = 0; i < data.measurements.length; i++) {
     if (data.measurements[i].parameter === 'pm10') {
       document.getElementById('local_pm10').textContent =

@@ -4,16 +4,22 @@
 // to the localPollutionDataRequest function
 window.addEventListener('load', function(event) {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(localPollutionDataRequest,
-      function(error){
-        //Error code is 1 when user doesn't allow location to be shared
-        if (error.code == 1){warningMessage("Testers- trying to break our app by declining geolocation..? Better luck next time.");
+    navigator.geolocation.getCurrentPosition(localPollutionDataRequest, function(error) {
+      //Error code is 1 when user doesn't allow location to be shared
+      if (error.code == 1) {
+        warningMessage(
+          'Testers- trying to break our app by declining geolocation..? Better luck next time.',
+        );
       } else {
-        warningMessage("Sorry, we can't find your location. Feel free to look at the listed major cities.");
+        warningMessage(
+          "Sorry, we can't find your location. Feel free to look at the listed major cities.",
+        );
       }
     });
   } else {
-    warningMessage("Sorry, we can't find your location. Feel free to look at the listed major cities.");
+    warningMessage(
+      "Sorry, we can't find your location. Feel free to look at the listed major cities.",
+    );
   }
 });
 
@@ -22,7 +28,9 @@ function localPollutionDataRequest(position) {
   var coordinates = { lat: position.coords.latitude, long: position.coords.longitude };
   pollutionDataRequest(coordinates, (err, city) => {
     if (err) {
-      warningMessage("Sorry, we don't collect air quality data for your local area. Feel free to look at the listed major cities.");
+      warningMessage(
+        "Sorry, we don't collect air quality data for your local area. Feel free to look at the listed major cities.",
+      );
     } else {
       updateLocalData(city);
     }
@@ -63,7 +71,7 @@ var populateDropdown = function(cityList) {
       var coordinates = { lat: city.latitude, long: city.longitude };
       pollutionDataRequest(coordinates, (err, city) => {
         if (err) {
-          warningMessage(err.message,4000);
+          warningMessage(err.message, 4000);
         } else {
           updateCompareData(city);
         }
@@ -87,7 +95,6 @@ var updateLocalData = function(data) {
 };
 
 var updateCompareData = function(data) {
-  console.log('hello', data);
   for (i = 0; i < data.measurements.length; i++) {
     if (data.measurements[i].parameter === 'pm10') {
       document.getElementById('compare_pm10').textContent = data.measurements[i].value;
@@ -106,13 +113,13 @@ function removeChildren(obj) {
 }
 
 function warningMessage(text, delay) {
-  var warning = document.createElement("span");
+  var warning = document.createElement('span');
   warning.classList.add('warning');
   warning.textContent = text;
-  cityInput.parentNode.insertBefore(warning,cityInput);
-  if(delay){
-    setTimeout(function(){
+  cityInput.parentNode.insertBefore(warning, cityInput);
+  if (delay) {
+    setTimeout(function() {
       warning.remove();
-    },delay);
+    }, delay);
   }
 }

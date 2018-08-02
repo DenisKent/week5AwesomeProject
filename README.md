@@ -17,7 +17,30 @@ Our website has 4 distinct sections:
 
 ![](https://i.imgur.com/EhYcJWu.png)
 
-## Architecture and Data Flow :wrench: :wrench:
+## File Structure, Architecture and Data Flow :wrench: :wrench:
+
+The project has the following:
+
+- **public**
+
+  - favicon.ico
+  - index.html
+  - style.css
+  - weather.png
+  - xhr.js - contains the autocomplete and getPollutionData which both make data requests to the server for data.
+  - dom.js - contains functions that update the structure of the website are made through this
+
+- **source**
+
+  - city100k.json
+  - server.js - Set up of the server
+  - router.js - 5 routes including home, assets, pollution data request, autocomplete request and 404 routes
+  - handlers.js - Handler functions to serve each of the routes mentioned in router.js.
+  - requests.js - makes API requests to the open air API using the requests module.
+  - search.js - autocomplete helper function to searh through the json datafile and return phrases matching the user's search.
+
+- **tests**
+  - test.js
 
 ## Interesting Code
 

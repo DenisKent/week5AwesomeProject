@@ -6,7 +6,7 @@ function pollutionDataRequest(coordinates, cb) {
   var xhr = new XMLHttpRequest();
   /* URL is get-pollution-data*/
   var url = '/get-pollution-data';
-  /* Setting call back function for when response is received */
+  /* Setting call back function for when response is received  */
   xhr.onreadystatechange = function() {
     if (this.readyState == 4) {
       if (this.status == 200){

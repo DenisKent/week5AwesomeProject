@@ -21,8 +21,8 @@ const pollutionDataRequest = (lat, long, cb, radius = 500000) => {
   const url = `https://api.openaq.org/v1/latest?coordinates=${lat},${long}&radius=${radius}&limit=${limit}`;
   request(url, (err, res, body) => {
     if (err) {
-      console.log(err);
-    } else {
+      cb(new Error('There was an error with the data request to openAQ'));
+    } else if (res.statusCode === 200) {
       // We should check that the response is 200
       const cityArray = JSON.parse(body).results;
       if (cityArray.length > 0) {
@@ -38,7 +38,7 @@ const pollutionDataRequest = (lat, long, cb, radius = 500000) => {
       } else {
         cb(new Error(`Sorry, no pollution data could be found within ${radius} of this city`));
       }
-    }
+    } else { cb(new Error(`There was an issue with the request to openAQ. REST status code: ${res.statusCode}`)); }
   });
 };
 

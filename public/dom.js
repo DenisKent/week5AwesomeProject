@@ -98,6 +98,7 @@ var updateLocalData = function(data) {
 };
 
 var updateCompareData = function(data) {
+baseDataRefresh();
   for (i = 0; i < data.measurements.length; i++) {
     if (data.measurements[i].parameter === 'pm10') {
       document.getElementById('compare_pm10').textContent =
@@ -111,6 +112,13 @@ var updateCompareData = function(data) {
     }
   }
 };
+
+function baseDataRefresh(){
+  document.getElementById('compare_pm10').textContent = "-";
+  document.getElementById('compare_no2').textContent = "-";
+  document.getElementById('compare_o3').textContent = "-";
+
+}
 
 function removeChildren(obj) {
   while (obj.hasChildNodes()) {

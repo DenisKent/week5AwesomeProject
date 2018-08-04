@@ -1,0 +1,223 @@
+html {
+  padding: 0;
+  margin: 0 !important;
+  font-size: 62.5%; // For rem units support
+}
+
+label {
+  display: block !important;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+  background: url(./weather.png) repeat;
+  font-family: 'RobotoDraft', 'Roboto', 'Helvetica Neue, Helvetica, Arial', sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 1.4rem;
+  line-height: 2rem;
+  letter-spacing: 0.01rem;
+  color: #212121;
+  text-align: center;
+  // Font Rendering
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+#dropdown-box ul {
+  margin: auto;
+  padding: 0px;
+  width: 90%;
+  list-style-type: none;
+  opacity: 0.8;
+}
+#dropdown-box ul > li {
+  display: grid;
+  grid-template-columns: 7fr 3fr;
+  background-color: white;
+  align-items: center;
+}
+
+#dropdown-box li:hover {
+  background-color: grey;
+}
+
+.cityName {
+  text-align: left;
+  padding-left: 5%;
+}
+.countryName {
+  text-align: right;
+  padding-right: 3%;
+  color: rgb(77, 77, 77);
+  font-size: 12px;
+}
+
+h1 {
+  font-family: 'Concert One', cursive;
+  font-size: 40px;
+}
+h3 {
+  font-size: 16px;
+}
+ul,
+li {
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+}
+.warning {
+  width: 60%;
+  margin: auto;
+  display: block;
+  background-color: rgb(208, 218, 94);
+}
+
+#scientific-info {
+  background: white;
+}
+
+#cityInputBox {
+  /* background-image: image(https://icon2.kisspng.com/20171221/odw/black-smoke-5a3c0ca177d2e2.1849037915138848334908.jpg); */
+}
+
+/*
+============================
+         STRUCTURE
+============================
+*/
+#city-comparison {
+  display: grid;
+  width: 90%;
+  max-width: 700px;
+  margin: auto;
+  grid-template-columns: 1fr 2fr 2fr;
+}
+
+#scientific-info {
+  display: block;
+  padding: 0px 10%;
+  margin: auto;
+  line-height: 1.8;
+}
+
+#cityInputBox {
+  padding: 9px;
+  border-radius: 5px;
+  border: 1px #dddddd solid;
+  width: 40%;
+}
+#cityInputBox:focus {
+  width: 60%;
+}
+
+/*
+============================
+       BACKGROUND
+============================
+*/
+/* The falling particles */
+#particle-container {
+  margin: 0px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+canvas {
+  display: block;
+  position: fixed;
+  background: linear-gradient(to bottom, rgb(219, 227, 240), rgb(198, 226, 240));
+}
+
+footer {
+  background: #000080;
+  color: #fff;
+}
+/* The rising smoke */
+/* #smoke{
+  width:10%;
+  opacity: 0.05;
+}
+
+@keyframes mymove {
+  from {bottom: -100px;}
+  to {bottom: 1500px;}
+}
+#smoke {
+  position:fixed;
+  left:10px;
+  animation-duration: 20s;
+  animation-name: mymove;
+  animation-delay: -1s;
+  animation-iteration-count: infinite;
+} */
+
+/*
+============================
+    THIS IS TABLET!!!!!!
+============================
+*/
+@media only screen and (min-width: 601px) {
+  h1 {
+    margin: 1em 0px;
+    font-size: 55px;
+  }
+  h3 {
+    font-size: 25px;
+  }
+  /* h1 {
+  font-size: 45px;
+} */
+  #cityInputBox {
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px #dddddd solid;
+    width: 40%;
+  }
+  #cityInputBox:focus {
+    width: 60%;
+  }
+  #dropdown-box ul {
+    margin: auto;
+    padding: 0px;
+    width: 60%;
+  }
+  #pxlrimage {
+    position: absolute;
+    /* left: 15%;
+  width: 70%; */
+    top: 140px;
+  }
+}
+
+/*
+============================
+    THIS IS DESKTOP!!!!!!
+============================
+*/
+
+@media only screen and (min-width: 1001px) {
+  #city-comparison {
+    width: 70%;
+  }
+}
+
+/* -- import Roboto Font ---------------------------- */
+@import 'https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic&subset=latin,cyrillic';
+
+/* -- You can use this tables in Bootstrap (v3) projects. -- */
+// @import "//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css";
+
+/* -- Box model ------------------------------- */
+*,
+*:after,
+*:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* -- Demo style ------------------------------- */

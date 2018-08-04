@@ -9,7 +9,7 @@
     "coverage": "nyc --reporter=lcov npm run test",
     "start": "node src/server.js",
     "go": "node src/server.js",
-    "build": "babel src -d lib"
+    "build": "babel public -d output --copy-files"
   },
   "repository": {
     "type": "git",

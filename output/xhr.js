@@ -1,23 +1,23 @@
+'use strict';
+
 /* eslint-disable no-unused-vars */
 
 /* Function to get a request from the server based on the user's input */
 
-const pollutionDataRequest = (coordinates, cb) => {
+var pollutionDataRequest = function pollutionDataRequest(coordinates, cb) {
   /* Create new request */
-  const xhr = new XMLHttpRequest();
+  var xhr = new XMLHttpRequest();
   /* URL is get-pollution-data */
-  const url = '/get-pollution-data';
+  var url = '/get-pollution-data';
   /* Setting call back function for when response is received  */
-  xhr.onreadystatechange = () => {
+  xhr.onreadystatechange = function () {
     if (xhr.readyState === 4) {
       if (xhr.status === 200) {
         // Action to be performed when the document is ready:
         cb(null, JSON.parse(xhr.responseText));
       } else if (xhr.status === 204) {
         // Passes through an error if no data is returned
-        cb(
-          new Error('Sorry no air quality data could be found close to this city. Try another one.'),
-        );
+        cb(new Error('Sorry no air quality data could be found close to this city. Try another one.'));
       } else if (xhr.status === 404) {
         // Passes through an error if formatted incorrectly
         cb(new Error('City coordinate data is formatted incorrectly.'));
@@ -32,15 +32,15 @@ const pollutionDataRequest = (coordinates, cb) => {
   xhr.send(JSON.stringify(coordinates));
 };
 
-const autocomplete = (userInput, cb) => {
+var autocomplete = function autocomplete(userInput, cb) {
   /* Create new request */
-  const xhr = new XMLHttpRequest();
+  var xhr = new XMLHttpRequest();
   /* URL is get-pollution-data, we pass through the query to the end of it.
   It most also be encoded so it can be decoded on the back-end */
-  const url = encodeURI(`/autocomplete-city?q=${userInput}`);
+  var url = encodeURI('/autocomplete-city?q=' + String(userInput));
 
   /* Setting call back function for when response is received  */
-  xhr.onreadystatechange = () => {
+  xhr.onreadystatechange = function () {
     if (xhr.readyState === 4 && xhr.status === 200) {
       // Action to be performed when the document is ready:
       cb(JSON.parse(xhr.responseText));

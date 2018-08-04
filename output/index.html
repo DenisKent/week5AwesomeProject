@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awesome Air</title>
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css?family=Concert+One|Rubik" rel="stylesheet">
+  </head>
+  <body>
+    <header>
+      <h1>Awesome Air</h1>
+    </header>
+    <section id="dropdown-box">
+      <label for="cityInputBox">Compare air pollution in your area with another city:</label>
+      <input id="cityInputBox" type="text" placeholder="e.g. Shanghai" list="citiesDropdown" autocomplete="off" value="" maxlength="30" required/>
+      <ul id="citiesDropdown">
+      </ul>
+    </section>
+    <section id = "city-comparison">
+    <div>
+        <h3>Pollutant</h3>
+        <ul>
+          <li>NO2</li>
+          <li>O3</li>
+          <li>PM10</li>
+        </ul>
+      </div>
+      <div>
+        <h3 id="your-city">Your City</h3>
+        <ul>
+          <li id="local_no2">-</li>
+          <li id="local_o3">-</li>
+          <li id="local_pm10">-</li>
+        </ul>
+      </div>
+      <div>
+        <h3 id="comparator-city">Comparator</h3>
+        <ul>
+          <li id="compare_no2">-</li>
+          <li id="compare_o3">-</li>
+          <li id="compare_pm10">-</li>
+        </ul>
+      </div>
+    </section>
+    <section id = "scientific-info">
+      <h2>Scientific Information:</h2>
+        <h3>Ozone</h3>
+        <p>Ozone: Ozone is very reactive, affecting the linings of the throat and lungs, restricting the air passages and making breathing difficult. It also increases the risk of respiratory infections. Ozone is of greater concern for the elderly and those with existing lung disease.
+          Ozone is the main active element in summer smog, which forms around cities on sunny days with light winds. Ozone is formed in air by reactions between hydrocarbons and oxides of nitrogen. Some hours of strong sunlight are required for high levels of ozone to form.
+          Sources of the emissions from which ozone is formed are widespread and include automobiles, industry, power stations, bushfire smoke, and commercial and domestic activities.</p>
+        <h3>NOx:</h3>
+        <p>NOx gases (NO & NO2) react to form smog and acid rain as well as being central to the formation of fine particles (PM) and ground level ozone, both of which are associated with adverse health effects.
+
+          Sources: NOx is produced from the reaction of nitrogen and oxygen gases in the air during combustion, especially at high temperatures. In areas of high motor vehicle traffic, such as in large cities, the amount of nitrogen oxides emitted into the atmosphere as air pollution can be significant. NOx gases are formed whenever combustion occurs in the presence of nitrogen – e.g. in car engines; they are also produced naturally by lightning. The majority of NOx polution comes from road transport.</p>
+        <h3>PM2.5:</h3>
+        <p> Particle Matter 2.5microMeters describes fine inhalable particles, with diameters that are generally 2.5 micrometers and smaller. They are typically made up from sulphate, nitrates, ammonia, sodium chloride, black carbon, mineral dust and water. Pollution at that size can be inhaled deep into the lungs where they cause inflammation, which is known to trigger a range of long term and short term health problems.
+        Direct sources of PM2.5 pollution include: petrol combustion in motor vehicles, fuel combustion in power plants, wood burning, agricultural burning, forest fires, bonfires and certain industrial processes.
+      Due to PM2.5 pollution being so small and light, it can travel over great distances. So, under certain meteorological conditions, PM2.5 pollution may travel from continental Europe to the UK</p>
+      <h3>PM10:</h3>
+      <p>Common sources of PM10 particles include sea salt, pollen and combustion activities such as motor vehicles and industrial processes. Dust from unsealed roads is a major source of PM10 particles.
+      </p>
+      <h3>SO2:</h3>
+      <p>
+        It irritates the nose, throat, and airways to cause coughing, wheezing, shortness of breath, or a tight feeling around the chest. The effects of sulfur dioxide are felt very quickly and most people would feel the worst symptoms in 10 or 15 minutes after breathing it in.
+
+        Those most at risk of developing problems if they are exposed to sulfur dioxide are people with asthma or similar conditions.
+        The main source of sulfur dioxide in the air is industrial activity that processes materials that contain sulfur, eg the generation of electricity from coal, oil or gas that contains sulfur. Some mineral ores also contain sulfur, and sulfur dioxide is released when they are processed.
+      </p>
+    </section>
+  <script src="./xhr.js" type="text/javascript"></script>
+  <script src="./dom.js" type="text/javascript"></script>
+      </body>
+</html>

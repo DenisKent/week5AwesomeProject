@@ -1,4 +1,4 @@
 {
-    "extends": "airbnb-base"
+  "presets": ["airbnb"]
 }
 /* https://github.com/airbnb/javascript */

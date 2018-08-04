@@ -85,6 +85,7 @@ const pollutionDataHandler = (request, response) => {
 const autocompleteHandler = (request, response) => {
   const { url } = request;
   let [, query] = url.split('q=');
+  // QueryString module
   /* Decoding deals with issues related to URL encoding */
   query = decodeURI(query);
   // Cleanses all non alphanumeric data out of the query

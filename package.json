@@ -8,7 +8,8 @@
     "dev": "nodemon src/server.js",
     "coverage": "nyc --reporter=lcov npm run test",
     "start": "node src/server.js",
-    "go": "node src/server.js"
+    "go": "node src/server.js",
+    "build": "babel src -d lib"
   },
   "repository": {
     "type": "git",
@@ -21,7 +22,9 @@
   },
   "homepage": "https://github.com/DenisKent/week5AwesomeProject#readme",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-eslint": "^8.2.6",
+    "babel-preset-airbnb": "^2.5.3",
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^13.0.0",
     "eslint-config-airbnb-es5": "^1.2.0",

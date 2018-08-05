@@ -3,7 +3,6 @@
 const cityInput = document.getElementById('cityInputBox');
 const citiesDropdown = document.getElementById('citiesDropdown');
 
-
 function warningMessage(text, delay) {
   const warning = document.createElement('span');
   warning.classList.add('warning');
